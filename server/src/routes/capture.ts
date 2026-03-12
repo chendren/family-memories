@@ -48,13 +48,10 @@ const upload = multer({
 router.post('/', uploadLimiter, upload.single('file'), (req, res) => {
   try {
     const db = getDb();
-    const { title, content, person_ids, tag_names, memory_date, location } = req.body;
+    const { title, content, text, person_ids, tag_names, memory_date, location } = req.body;
     const file = req.file;
-
-    if (!title) {
-      res.status(400).json({ code: 'VALIDATION_ERROR', message: 'title is required' });
-      return;
-    }
+    const memoryContent = content || text || null;
+    const memoryTitle = title || (memoryContent ? memoryContent.substring(0, 60).trim() + (memoryContent.length > 60 ? '...' : '') : file?.originalname || 'Untitled Memory');
 
     const memoryId = newId();
     const now = new Date().toISOString();
@@ -67,7 +64,7 @@ router.post('/', uploadLimiter, upload.single('file'), (req, res) => {
     db.prepare(`
       INSERT INTO memories (id, title, content, memory_type, memory_date, location, processing_status, created_at, updated_at)
       VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?)
-    `).run(memoryId, title, content ?? null, memoryType, memory_date ?? null, location ?? null, now, now);
+    `).run(memoryId, memoryTitle, memoryContent, memoryType, memory_date ?? null, location ?? null, now, now);
 
     if (file) {
       const destDir = path.join(config.DATA_DIR, 'media', 'originals', memoryId);
@@ -90,7 +87,13 @@ router.post('/', uploadLimiter, upload.single('file'), (req, res) => {
 
     let parsedPersonIds: string[] = [];
     if (person_ids) {
-      parsedPersonIds = typeof person_ids === 'string' ? JSON.parse(person_ids) : person_ids;
+      if (Array.isArray(person_ids)) {
+        parsedPersonIds = person_ids;
+      } else if (typeof person_ids === 'string' && person_ids.startsWith('[')) {
+        try { parsedPersonIds = JSON.parse(person_ids); } catch { parsedPersonIds = [person_ids]; }
+      } else if (typeof person_ids === 'string') {
+        parsedPersonIds = [person_ids];
+      }
     }
     if (Array.isArray(parsedPersonIds)) {
       const insertPeople = db.prepare('INSERT OR IGNORE INTO memory_people (memory_id, family_member_id) VALUES (?, ?)');
@@ -101,7 +104,13 @@ router.post('/', uploadLimiter, upload.single('file'), (req, res) => {
 
     let parsedTagNames: string[] = [];
     if (tag_names) {
-      parsedTagNames = typeof tag_names === 'string' ? JSON.parse(tag_names) : tag_names;
+      if (Array.isArray(tag_names)) {
+        parsedTagNames = tag_names;
+      } else if (typeof tag_names === 'string' && tag_names.startsWith('[')) {
+        try { parsedTagNames = JSON.parse(tag_names); } catch { parsedTagNames = [tag_names]; }
+      } else if (typeof tag_names === 'string') {
+        parsedTagNames = [tag_names];
+      }
     }
     if (Array.isArray(parsedTagNames)) {
       const findTag = db.prepare('SELECT id FROM tags WHERE name = ?');
@@ -128,7 +137,7 @@ router.post('/', uploadLimiter, upload.single('file'), (req, res) => {
     enqueue('summarize', memoryId);
     enqueue('extract', memoryId);
 
-    broadcast('memory:created', { id: memoryId, title, memory_type: memoryType, processing_status: 'pending' });
+    broadcast('memory:created', { id: memoryId, title: memoryTitle, memory_type: memoryType, processing_status: 'pending' });
 
     res.status(202).json({ data: { id: memoryId, processing_status: 'pending' } });
   } catch (err) {
