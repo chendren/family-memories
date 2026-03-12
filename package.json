@@ -1,0 +1,15 @@
+{
+  "name": "family-memories",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["shared", "server", "frontend"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w shared && npm run build -w server && npm run build -w frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.2"
+  }
+}
