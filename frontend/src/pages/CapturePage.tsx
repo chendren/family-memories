@@ -3,15 +3,21 @@ import { QuickCapture } from '@/components/capture/QuickCapture';
 import { PhotoCapture } from '@/components/capture/PhotoCapture';
 import { AudioCapture } from '@/components/capture/AudioCapture';
 import { DropZone } from '@/components/capture/DropZone';
+import { StoryPrompts } from '@/components/capture/StoryPrompts';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { useCaptureStore } from '@/stores/capture-store';
 
 export function CapturePage() {
   const navigate = useNavigate();
-  const { pendingFiles, selectedPersonIds, selectedTags, addFile, removeFile } = useCaptureStore();
+  const { pendingFiles, selectedPersonIds, selectedTags, addFile, removeFile, setDraftText, draftText } = useCaptureStore();
 
   function handleDrop(files: File[]) {
     files.forEach(addFile);
+  }
+
+  function handlePromptSelect(prompt: string) {
+    const prefix = draftText ? draftText + '\n\n' : '';
+    setDraftText(prefix + prompt + '\n\n');
   }
 
   return (
@@ -28,6 +34,9 @@ export function CapturePage() {
           </button>
         }
       />
+
+      {/* Story Prompts — inspired by StoryWorth */}
+      <StoryPrompts onSelect={handlePromptSelect} />
 
       <QuickCapture onSent={() => navigate('/timeline')} />
 

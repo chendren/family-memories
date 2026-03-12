@@ -466,6 +466,11 @@ class FamilyGraphService {
     });
   }
 
+  getGeneration(id: string): number {
+    if (!this.graph.hasNode(id)) return 0;
+    return this.graph.getNodeAttribute(id, 'generation') ?? 0;
+  }
+
   getShortestPath(fromId: string, toId: string): { path: string[]; steps: PathStep[] } | null {
     if (!this.graph.hasNode(fromId) || !this.graph.hasNode(toId)) {
       return null;

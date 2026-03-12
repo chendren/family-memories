@@ -1,7 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import { NavBar } from './NavBar';
+import { useProcessingToasts } from '@/hooks/useProcessingToasts';
 
 export function Shell() {
+  useProcessingToasts();
+
   return (
     <div className="min-h-screen bg-cream-100">
       <NavBar />

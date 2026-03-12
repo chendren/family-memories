@@ -46,6 +46,16 @@ export type {
   AppStats,
 } from './types/api.js';
 
+export type {
+  GenealogyProvider,
+  ServiceStatus,
+  GenealogyService,
+  EthnicityRegion,
+  DnaProfile,
+  DnaMatch,
+  GedcomExportResult,
+} from './types/genealogy.js';
+
 export {
   MEMORY_TYPES,
   PROCESSING_STATUSES,

@@ -54,3 +54,20 @@ export async function getRelatedMemories(id: string): Promise<ApiResponse<Memory
   const { data } = await api.get<ApiResponse<Memory[]>>(`/api/memories/${id}/related`);
   return data;
 }
+
+export async function getOnThisDay(): Promise<{ data: Memory[]; meta: { month: number; day: number } }> {
+  const { data } = await api.get<{ data: Memory[]; meta: { month: number; day: number } }>('/api/memories/on-this-day');
+  return data;
+}
+
+export async function getStats(): Promise<ApiResponse<{
+  memories: number;
+  family_members: number;
+  relationships: number;
+  media_assets: number;
+  tags: number;
+  media_size: string;
+}>> {
+  const { data } = await api.get('/api/stats');
+  return data;
+}

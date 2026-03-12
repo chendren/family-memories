@@ -71,3 +71,18 @@ export function useRelatedMemories(id: string | undefined) {
     enabled: !!id,
   });
 }
+
+export function useOnThisDay() {
+  return useQuery({
+    queryKey: ['memories', 'on-this-day'],
+    queryFn: () => memoriesApi.getOnThisDay(),
+    staleTime: 60 * 60 * 1000, // 1 hour — date doesn't change often
+  });
+}
+
+export function useStats() {
+  return useQuery({
+    queryKey: ['stats'],
+    queryFn: () => memoriesApi.getStats(),
+  });
+}

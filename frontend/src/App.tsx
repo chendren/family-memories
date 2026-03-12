@@ -10,6 +10,7 @@ import { FamilyTreePage } from '@/pages/FamilyTreePage';
 import { FamilyMembersPage } from '@/pages/FamilyMembersPage';
 import { MemoryDetailPage } from '@/pages/MemoryDetailPage';
 import { PersonPage } from '@/pages/PersonPage';
+import { GenealogyPage } from '@/pages/GenealogyPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/family/members" element={<FamilyMembersPage />} />
             <Route path="/memories/:id" element={<MemoryDetailPage />} />
             <Route path="/person/:id" element={<PersonPage />} />
+            <Route path="/genealogy" element={<GenealogyPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

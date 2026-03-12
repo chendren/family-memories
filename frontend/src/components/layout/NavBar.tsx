@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { House, PaperPlaneTilt, Clock, MagnifyingGlass, UsersThree, TreeStructure } from '@phosphor-icons/react';
+import { House, PaperPlaneTilt, Clock, MagnifyingGlass, UsersThree, TreeStructure, Dna } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -9,6 +9,7 @@ const navItems = [
   { to: '/search', icon: MagnifyingGlass, label: 'Search' },
   { to: '/family', icon: TreeStructure, label: 'Tree' },
   { to: '/family/members', icon: UsersThree, label: 'Family' },
+  { to: '/genealogy', icon: Dna, label: 'DNA' },
 ];
 
 export function NavBar() {

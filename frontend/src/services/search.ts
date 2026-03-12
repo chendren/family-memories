@@ -10,3 +10,15 @@ export async function getSuggestions(q: string): Promise<ApiResponse<SearchSugge
   const { data } = await api.get<ApiResponse<SearchSuggestion[]>>('/api/search/suggest', { params: { q } });
   return data;
 }
+
+export interface ConversationalResponse {
+  answer: string;
+  sources: Array<{ memory: { id: string; title: string; memory_type: string; memory_date: string | null }; score: number }>;
+  total: number;
+  took_ms: number;
+}
+
+export async function conversationalSearch(query: string, limit = 5): Promise<{ data: ConversationalResponse }> {
+  const { data } = await api.post<{ data: ConversationalResponse }>('/api/search/conversational', { query, limit });
+  return data;
+}

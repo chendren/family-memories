@@ -118,6 +118,33 @@ router.post('/', (req, res) => {
   }
 });
 
+// "On This Day" — memories from the same month-day in previous years
+router.get('/on-this-day', (req, res) => {
+  try {
+    const db = getDb();
+    const today = new Date();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const thisYear = today.getFullYear();
+    const pattern = `%-${month}-${day}%`;
+
+    const rows = db.prepare(`
+      SELECT m.*,
+        (SELECT ma.thumbnail_path FROM media_assets ma WHERE ma.memory_id = m.id LIMIT 1) as thumbnail_path
+      FROM memories m
+      WHERE m.memory_date LIKE ?
+        AND CAST(SUBSTR(m.memory_date, 1, 4) AS INTEGER) < ?
+      ORDER BY m.memory_date DESC
+      LIMIT 20
+    `).all(pattern, thisYear) as Array<Memory & { thumbnail_path: string | null }>;
+
+    res.json({ data: rows, meta: { month: Number(month), day: Number(day) } });
+  } catch (err) {
+    logger.error({ err }, 'Failed to get on-this-day memories');
+    res.status(500).json({ code: 'ON_THIS_DAY_ERROR', message: 'Failed to get memories' });
+  }
+});
+
 router.get('/:id', (req, res) => {
   try {
     const db = getDb();

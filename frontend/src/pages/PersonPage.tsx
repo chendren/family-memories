@@ -1,20 +1,25 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { format } from 'date-fns';
-import { ArrowLeft, PencilSimple, Calendar, MapPin } from '@phosphor-icons/react';
-import { useState } from 'react';
+import { ArrowLeft, PencilSimple, Calendar, CameraPlus } from '@phosphor-icons/react';
+import { useState, useRef } from 'react';
 import { motion } from 'motion/react';
+import { toast } from 'sonner';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { MemoryCard } from '@/components/memory/MemoryCard';
 import { MemoryGrid } from '@/components/memory/MemoryGrid';
 import { EmptyState } from '@/components/shared/EmptyState';
 import { useMember, useUpdateMember } from '@/hooks/useFamilyMembers';
 import { useMemories } from '@/hooks/useMemories';
+import { uploadMemberPhoto } from '@/services/family';
+import { useQueryClient } from '@tanstack/react-query';
 import type { FamilyMemberUpdate } from '@family-memories/shared';
 
 export function PersonPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [editing, setEditing] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { data: memberResponse, isLoading } = useMember(id);
   const { data: memoriesResponse } = useMemories({ person_id: id, limit: 50 });
   const updateMember = useUpdateMember();
@@ -71,6 +76,25 @@ export function PersonPage() {
     setEditing(false);
   }
 
+  async function handlePhotoUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file || !id) return;
+
+    setUploading(true);
+    try {
+      await uploadMemberPhoto(id, file);
+      queryClient.invalidateQueries({ queryKey: ['family-member', id] });
+      queryClient.invalidateQueries({ queryKey: ['family-members'] });
+      queryClient.invalidateQueries({ queryKey: ['family-tree'] });
+      toast.success('Photo updated');
+    } catch {
+      toast.error('Failed to upload photo');
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  }
+
   const inputClass =
     'w-full bg-cream-100 border border-sand-200 rounded-lg px-3 py-2 text-sm text-walnut-800 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body';
 
@@ -91,11 +115,33 @@ export function PersonPage() {
         className="bg-white rounded-xl border border-sand-200 p-6 shadow-card"
       >
         <div className="flex items-start gap-5">
-          <div className="w-24 h-24 rounded-full bg-cream-200 border-2 border-sand-200 flex items-center justify-center overflow-hidden flex-shrink-0">
-            {member.photo_path ? (
-              <img src={member.photo_path} alt={member.name} className="w-full h-full object-cover" />
-            ) : (
-              <span className="text-2xl font-bold text-walnut-400 font-body">{initials}</span>
+          {/* Photo with upload */}
+          <div className="relative group flex-shrink-0">
+            <div className="w-24 h-24 rounded-full bg-cream-200 border-2 border-sand-200 flex items-center justify-center overflow-hidden">
+              {member.photo_path ? (
+                <img src={member.photo_path} alt={member.name} className="w-full h-full object-cover" />
+              ) : (
+                <span className="text-2xl font-bold text-walnut-400 font-body">{initials}</span>
+              )}
+            </div>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+              className="absolute inset-0 rounded-full bg-walnut-900/0 group-hover:bg-walnut-900/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
+            >
+              <CameraPlus size={24} className="text-white drop-shadow-md" />
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handlePhotoUpload}
+              className="hidden"
+            />
+            {uploading && (
+              <div className="absolute inset-0 rounded-full bg-walnut-900/40 flex items-center justify-center">
+                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              </div>
             )}
           </div>
 
@@ -189,8 +235,15 @@ export function PersonPage() {
         </h2>
         {memories.length > 0 ? (
           <MemoryGrid>
-            {memories.map((memory) => (
-              <MemoryCard key={memory.id} memory={memory} />
+            {memories.map((memory, i) => (
+              <motion.div
+                key={memory.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05 }}
+              >
+                <MemoryCard memory={memory} />
+              </motion.div>
             ))}
           </MemoryGrid>
         ) : (

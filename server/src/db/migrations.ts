@@ -81,6 +81,15 @@ const SCHEMA = `
       created_at TEXT NOT NULL DEFAULT (datetime('now')), started_at TEXT, completed_at TEXT
     );
     CREATE INDEX IF NOT EXISTS idx_job_status ON job_queue(status);
+
+    CREATE TABLE IF NOT EXISTS genealogy_services (
+      id TEXT PRIMARY KEY,
+      provider TEXT NOT NULL UNIQUE,
+      status TEXT NOT NULL DEFAULT 'disconnected',
+      last_sync TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
 `;
 
 export function runMigrations(db: Database.Database): void {

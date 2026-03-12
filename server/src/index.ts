@@ -25,6 +25,7 @@ import captureRouter from './routes/capture.js';
 import familyRouter from './routes/family.js';
 import searchRouter from './routes/search.js';
 import timelineRouter from './routes/timeline.js';
+import genealogyRouter from './routes/genealogy.js';
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/api/capture', captureRouter);
 app.use('/api/family', familyRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/timeline', timelineRouter);
+app.use('/api/genealogy', genealogyRouter);
 
 app.use(errorHandler);
 
