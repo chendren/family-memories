@@ -8,7 +8,10 @@
 }
 
 body {
-  @apply bg-cream-100 text-walnut-800 antialiased;
+  background-color: #FDF8F3;
+  color: #433832;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-image:
     radial-gradient(ellipse at 20% 50%, rgba(224, 122, 95, 0.04) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 20%, rgba(129, 178, 154, 0.04) 0%, transparent 50%),
@@ -33,15 +36,16 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-cream-200;
+  background-color: #FAF0E6;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-sand-300 rounded-full;
+  background-color: #D4C5B0;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-sand-400;
+  background-color: #BBA88F;
 }
 
 /* Headings use display font */
