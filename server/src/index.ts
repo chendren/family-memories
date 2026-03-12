@@ -14,6 +14,11 @@ import { requestId } from './middleware/request-id.js';
 import { errorHandler } from './middleware/error-handler.js';
 import { setupWebSocket, closeWebSocket } from './routes/ws.js';
 import { familyGraph } from './services/family-graph.js';
+import { processThumbnailJob } from './jobs/processors/thumbnail.js';
+import { processEmbedJob } from './jobs/processors/embed.js';
+import { processSummarizeJob } from './jobs/processors/summarize.js';
+import { processExtractJob } from './jobs/processors/extract.js';
+import { processConnectionsJob } from './jobs/processors/connections.js';
 import healthRouter from './routes/health.js';
 import memoriesRouter from './routes/memories.js';
 import captureRouter from './routes/capture.js';
@@ -49,7 +54,13 @@ async function start(): Promise<void> {
   const server = createServer(app);
   setupWebSocket(server);
 
-  startPolling({});
+  startPolling({
+    thumbnail: processThumbnailJob,
+    embed: processEmbedJob,
+    summarize: processSummarizeJob,
+    extract: processExtractJob,
+    connections: processConnectionsJob,
+  });
 
   server.listen(config.PORT, () => {
     logger.info({ port: config.PORT, dataDir: config.DATA_DIR }, 'Family Memories server started');

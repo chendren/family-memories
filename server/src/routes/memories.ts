@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { getDb } from '../db/sqlite.js';
 import { newId } from '../utils/id.js';
 import { logger } from '../utils/logger.js';
+import { processMemory } from '../services/memory-agent.js';
+import { deleteByMemoryId } from '../services/vectordb.js';
 import { DEFAULT_PAGE_SIZE } from '@family-memories/shared';
 import type { Memory, MemoryWithRelations, MediaAsset, Tag, FamilyMemberRef, Entity, MemoryConnection } from '@family-memories/shared';
 
@@ -103,6 +105,12 @@ router.post('/', (req, res) => {
     }
 
     const memory = db.prepare('SELECT * FROM memories WHERE id = ?').get(id) as Memory;
+
+    // Kick off AI processing pipeline (embed, summarize, extract)
+    processMemory(id).catch((err) => {
+      logger.error({ err, memoryId: id }, 'Failed to enqueue memory processing');
+    });
+
     res.status(201).json({ data: memory });
   } catch (err) {
     logger.error({ err }, 'Failed to create memory');
@@ -189,6 +197,12 @@ router.delete('/:id', (req, res) => {
     }
 
     db.prepare('DELETE FROM memories WHERE id = ?').run(id);
+
+    // Clean up vectors from LanceDB
+    deleteByMemoryId(id).catch((err) => {
+      logger.error({ err, memoryId: id }, 'Failed to delete vectors');
+    });
+
     res.status(204).end();
   } catch (err) {
     logger.error({ err }, 'Failed to delete memory');
