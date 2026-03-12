@@ -46,10 +46,10 @@ export function TagEditor({ tags, onChange, suggestions = [], className }: TagEd
         {tags.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-terracotta-50 text-terracotta-600 border border-terracotta-200 font-body"
           >
             {tag}
-            <button onClick={() => removeTag(tag)} className="hover:text-amber-200 transition-colors">
+            <button onClick={() => removeTag(tag)} className="hover:text-terracotta-700 transition-colors">
               <X size={10} />
             </button>
           </span>
@@ -69,25 +69,25 @@ export function TagEditor({ tags, onChange, suggestions = [], className }: TagEd
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             placeholder="Add tag..."
-            className="flex-1 bg-slate-800 border border-slate-600 rounded-lg px-3 py-1.5 text-xs text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="flex-1 bg-cream-100 border border-sand-200 rounded-lg px-3 py-1.5 text-xs text-walnut-800 placeholder:text-walnut-400 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body"
           />
           <button
             type="button"
             onClick={() => addTag(input)}
             disabled={!input.trim()}
-            className="p-1.5 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 disabled:opacity-50 transition-colors"
+            className="p-1.5 rounded-lg bg-cream-200 text-walnut-600 hover:bg-cream-300 disabled:opacity-50 transition-colors"
           >
             <Plus size={14} />
           </button>
         </div>
 
         {showSuggestions && filteredSuggestions.length > 0 && input && (
-          <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl z-10 max-h-32 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-sand-200 rounded-lg shadow-card z-10 max-h-32 overflow-y-auto">
             {filteredSuggestions.map((s) => (
               <button
                 key={s}
                 onMouseDown={() => addTag(s)}
-                className="w-full text-left px-3 py-2 text-xs text-slate-300 hover:bg-slate-700 transition-colors"
+                className="w-full text-left px-3 py-2 text-xs text-walnut-600 hover:bg-cream-100 transition-colors font-body"
               >
                 {s}
               </button>

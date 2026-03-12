@@ -10,22 +10,22 @@ interface ProcessingBadgeProps {
 const statusConfig: Record<ProcessingStatus, { label: string; color: string; icon: React.ReactNode }> = {
   pending: {
     label: 'Pending',
-    color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+    color: 'bg-gold-50 text-gold-400 border-gold-200',
     icon: <Clock size={12} className="animate-pulse" />,
   },
   processing: {
     label: 'Processing',
-    color: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    color: 'bg-sage-50 text-sage-400 border-sage-200',
     icon: <CircleNotch size={12} className="animate-spin" />,
   },
   completed: {
     label: 'Completed',
-    color: 'bg-green-500/20 text-green-400 border-green-500/30',
+    color: 'bg-sage-50 text-sage-500 border-sage-200',
     icon: <Check size={12} />,
   },
   failed: {
     label: 'Failed',
-    color: 'bg-red-500/20 text-red-400 border-red-500/30',
+    color: 'bg-red-50 text-red-500 border-red-200',
     icon: <X size={12} />,
   },
 };
@@ -35,7 +35,7 @@ export function ProcessingBadge({ status, className }: ProcessingBadgeProps) {
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border',
+        'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border font-body',
         config.color,
         className
       )}

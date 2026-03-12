@@ -32,25 +32,25 @@ export function DropZone({ files, onDrop, onRemove, className }: DropZoneProps) 
         className={cn(
           'border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors',
           isDragActive
-            ? 'border-amber-500 bg-amber-500/5'
-            : 'border-slate-700 hover:border-slate-600 bg-slate-800/50'
+            ? 'border-terracotta-400 bg-terracotta-50'
+            : 'border-sand-300 hover:border-sand-400 bg-cream-50'
         )}
       >
         <input {...getInputProps()} />
         <CloudArrowUp
           size={40}
-          className={cn('mx-auto mb-3', isDragActive ? 'text-amber-500' : 'text-slate-500')}
+          className={cn('mx-auto mb-3', isDragActive ? 'text-terracotta-500' : 'text-sand-400')}
         />
-        <p className="text-sm text-slate-300 font-medium">
+        <p className="text-sm text-walnut-600 font-medium font-body">
           {isDragActive ? 'Drop files here' : 'Drag & drop files here'}
         </p>
-        <p className="text-xs text-slate-500 mt-1">or click to browse (images, audio, video)</p>
+        <p className="text-xs text-walnut-400 mt-1 font-body">or click to browse (images, audio, video)</p>
       </div>
 
       {files.length > 0 && (
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
           {files.map((file, i) => (
-            <div key={`${file.name}-${i}`} className="relative group rounded-lg overflow-hidden bg-slate-800 border border-slate-700">
+            <div key={`${file.name}-${i}`} className="relative group rounded-lg overflow-hidden bg-white border border-sand-200">
               {file.type.startsWith('image/') ? (
                 <img
                   src={URL.createObjectURL(file)}
@@ -59,10 +59,10 @@ export function DropZone({ files, onDrop, onRemove, className }: DropZoneProps) 
                 />
               ) : (
                 <div className="w-full aspect-square flex flex-col items-center justify-center p-2">
-                  <span className="text-xs text-slate-400 font-medium truncate w-full text-center">
+                  <span className="text-xs text-walnut-500 font-medium truncate w-full text-center font-body">
                     {file.name}
                   </span>
-                  <span className="text-[10px] text-slate-500 mt-1">
+                  <span className="text-[10px] text-walnut-400 mt-1 font-body">
                     {(file.size / 1024 / 1024).toFixed(1)} MB
                   </span>
                 </div>

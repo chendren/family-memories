@@ -41,12 +41,12 @@ export function MemoryForm({ initialValues, onSubmit, isLoading, mode, className
   }
 
   const inputClass =
-    'w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent';
+    'w-full bg-cream-100 border border-sand-200 rounded-lg px-3 py-2 text-sm text-walnut-800 placeholder:text-walnut-400 focus:outline-none focus:ring-2 focus:ring-terracotta-300 focus:border-transparent font-body';
 
   return (
     <form onSubmit={handleSubmit} className={cn('space-y-4', className)}>
       <div>
-        <label className="block text-xs font-medium text-slate-400 mb-1">Title</label>
+        <label className="block text-xs font-medium text-walnut-500 mb-1 font-body">Title</label>
         <input
           type="text"
           value={title}
@@ -58,7 +58,7 @@ export function MemoryForm({ initialValues, onSubmit, isLoading, mode, className
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-slate-400 mb-1">Content</label>
+        <label className="block text-xs font-medium text-walnut-500 mb-1 font-body">Content</label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -70,7 +70,7 @@ export function MemoryForm({ initialValues, onSubmit, isLoading, mode, className
 
       {mode === 'create' && (
         <div>
-          <label className="block text-xs font-medium text-slate-400 mb-1">Type</label>
+          <label className="block text-xs font-medium text-walnut-500 mb-1 font-body">Type</label>
           <select
             value={memoryType}
             onChange={(e) => setMemoryType(e.target.value as MemoryType)}
@@ -87,7 +87,7 @@ export function MemoryForm({ initialValues, onSubmit, isLoading, mode, className
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-slate-400 mb-1">Date</label>
+          <label className="block text-xs font-medium text-walnut-500 mb-1 font-body">Date</label>
           <input
             type="date"
             value={memoryDate}
@@ -96,7 +96,7 @@ export function MemoryForm({ initialValues, onSubmit, isLoading, mode, className
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-400 mb-1">Location</label>
+          <label className="block text-xs font-medium text-walnut-500 mb-1 font-body">Location</label>
           <input
             type="text"
             value={location}
@@ -110,7 +110,7 @@ export function MemoryForm({ initialValues, onSubmit, isLoading, mode, className
       <button
         type="submit"
         disabled={isLoading || (mode === 'create' && !title.trim())}
-        className="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-lg px-4 py-2.5 text-sm transition-colors disabled:opacity-50"
+        className="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold rounded-lg px-4 py-2.5 text-sm transition-colors disabled:opacity-50 font-body"
       >
         {isLoading ? 'Saving...' : mode === 'create' ? 'Create Memory' : 'Save Changes'}
       </button>

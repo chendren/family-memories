@@ -22,13 +22,13 @@ export function SearchPage() {
 
       {isSearching && (
         <div className="flex justify-center py-12">
-          <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-terracotta-400 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
 
       {!isSearching && results && results.results.length > 0 && (
         <div className="space-y-3">
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-walnut-400 font-body">
             {results.total} result{results.total !== 1 ? 's' : ''} in {results.took_ms}ms
           </p>
           <SearchResults results={results.results} />

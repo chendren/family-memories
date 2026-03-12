@@ -71,11 +71,11 @@ export function QuickCapture({ className, onSent }: QuickCaptureProps) {
             className="flex gap-2 overflow-x-auto pb-2"
           >
             {pendingFiles.map((file, i) => (
-              <div key={`${file.name}-${i}`} className="relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-slate-700">
+              <div key={`${file.name}-${i}`} className="relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-cream-200 border border-sand-200">
                 {file.type.startsWith('image/') ? (
                   <img src={URL.createObjectURL(file)} alt="" className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">
+                  <div className="w-full h-full flex items-center justify-center text-xs text-walnut-500">
                     {file.name.split('.').pop()?.toUpperCase()}
                   </div>
                 )}
@@ -99,16 +99,16 @@ export function QuickCapture({ className, onSent }: QuickCaptureProps) {
               key={member.id}
               onClick={() => togglePerson(member.id)}
               className={cn(
-                'flex-shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-colors border',
+                'flex-shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium font-body transition-colors border',
                 selectedPersonIds.includes(member.id)
-                  ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
-                  : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'
+                  ? 'bg-terracotta-50 text-terracotta-600 border-terracotta-200'
+                  : 'bg-white text-walnut-500 border-sand-200 hover:border-sand-300'
               )}
             >
               {member.photo_path ? (
                 <img src={member.photo_path} alt="" className="w-4 h-4 rounded-full object-cover" />
               ) : (
-                <div className="w-4 h-4 rounded-full bg-slate-600 flex items-center justify-center text-[8px] text-slate-300">
+                <div className="w-4 h-4 rounded-full bg-cream-300 flex items-center justify-center text-[8px] text-walnut-600">
                   {member.name.charAt(0)}
                 </div>
               )}
@@ -120,29 +120,29 @@ export function QuickCapture({ className, onSent }: QuickCaptureProps) {
 
       {/* Input bar */}
       <div className="flex items-end gap-2">
-        <div className="flex-1 bg-slate-800 rounded-2xl border border-slate-700 focus-within:border-amber-500/50 transition-colors">
+        <div className="flex-1 bg-white rounded-2xl border border-sand-200 focus-within:border-terracotta-300 focus-within:shadow-warm transition-all shadow-card">
           <textarea
             value={draftText}
             onChange={(e) => setDraftText(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="What happened today?"
             rows={1}
-            className="w-full bg-transparent px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 resize-none focus:outline-none max-h-32"
+            className="w-full bg-transparent px-4 py-3 text-sm text-walnut-800 placeholder:text-walnut-400 resize-none focus:outline-none max-h-32 font-body"
             style={{ minHeight: '44px' }}
           />
           <div className="flex items-center gap-1 px-2 pb-2">
             <button
               onClick={() => cameraInputRef.current?.click()}
-              className="p-2 rounded-full text-slate-400 hover:text-amber-500 hover:bg-slate-700/50 transition-colors"
+              className="p-2 rounded-full text-walnut-400 hover:text-terracotta-500 hover:bg-terracotta-50 transition-colors"
             >
               <Camera size={18} />
             </button>
-            <button className="p-2 rounded-full text-slate-400 hover:text-amber-500 hover:bg-slate-700/50 transition-colors">
+            <button className="p-2 rounded-full text-walnut-400 hover:text-terracotta-500 hover:bg-terracotta-50 transition-colors">
               <Microphone size={18} />
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="p-2 rounded-full text-slate-400 hover:text-amber-500 hover:bg-slate-700/50 transition-colors"
+              className="p-2 rounded-full text-walnut-400 hover:text-terracotta-500 hover:bg-terracotta-50 transition-colors"
             >
               <Paperclip size={18} />
             </button>
@@ -155,8 +155,8 @@ export function QuickCapture({ className, onSent }: QuickCaptureProps) {
           className={cn(
             'p-3 rounded-full transition-all flex-shrink-0',
             hasContent
-              ? 'bg-amber-500 text-slate-900 hover:bg-amber-600 shadow-lg shadow-amber-500/20'
-              : 'bg-slate-800 text-slate-600'
+              ? 'bg-terracotta-500 text-white hover:bg-terracotta-600 shadow-warm'
+              : 'bg-cream-200 text-walnut-400'
           )}
         >
           <PaperPlaneTilt size={20} weight="fill" />

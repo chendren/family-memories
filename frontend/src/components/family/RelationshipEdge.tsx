@@ -10,12 +10,12 @@ interface RelationshipEdgeData {
 }
 
 const EDGE_COLORS: Record<RelationshipType, string> = {
-  parent: '#10b981',
-  spouse: '#fb7185',
-  sibling: '#38bdf8',
-  step_parent: '#6ee7b7',
-  adopted_parent: '#a78bfa',
-  partner: '#fda4af',
+  parent: '#81B29A',
+  spouse: '#E07A5F',
+  sibling: '#DDA15E',
+  step_parent: '#B5D9C7',
+  adopted_parent: '#A08B7A',
+  partner: '#FFA07A',
 };
 
 const DASHED_TYPES: RelationshipType[] = ['step_parent', 'adopted_parent'];
@@ -53,7 +53,7 @@ function RelationshipEdgeComponent({
     targetPosition,
   });
 
-  const color = EDGE_COLORS[relType] ?? '#64748b';
+  const color = EDGE_COLORS[relType] ?? '#BBA88F';
   const isDashed = DASHED_TYPES.includes(relType);
 
   return (
@@ -105,7 +105,7 @@ function RelationshipEdgeComponent({
             width={80}
             height={24}
             rx={6}
-            fill="#1e293b"
+            fill="#FFFFFF"
             stroke={color}
             strokeWidth={1}
             opacity={0.95}

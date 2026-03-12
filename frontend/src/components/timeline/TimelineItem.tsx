@@ -23,16 +23,16 @@ export function TimelineItem({ memory, index, className }: TimelineItemProps) {
       className={cn('relative flex items-start gap-4 md:gap-8', className)}
     >
       {/* Center spine dot */}
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-3 h-3 rounded-full bg-amber-500 border-2 border-slate-900 z-10" />
+      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-3 h-3 rounded-full bg-terracotta-400 border-2 border-cream-100 z-10" />
 
       {/* Mobile layout: always left */}
       <div className="md:hidden flex items-start gap-4 w-full">
         <div className="flex flex-col items-center flex-shrink-0">
-          <div className="w-3 h-3 rounded-full bg-amber-500 border-2 border-slate-900" />
-          <div className="w-0.5 flex-1 bg-slate-700 min-h-[2rem]" />
+          <div className="w-3 h-3 rounded-full bg-terracotta-400 border-2 border-cream-100" />
+          <div className="w-0.5 flex-1 bg-sand-200 min-h-[2rem]" />
         </div>
         <div className="flex-1 pb-6">
-          <span className="text-xs text-slate-500 mb-2 block">{dateLabel}</span>
+          <span className="text-xs text-walnut-400 mb-2 block font-body">{dateLabel}</span>
           <MemoryCard memory={memory} />
         </div>
       </div>
@@ -45,7 +45,7 @@ export function TimelineItem({ memory, index, className }: TimelineItemProps) {
           </div>
         </div>
         <div className={cn('flex items-start pt-6', isLeft ? 'justify-start order-2' : 'justify-end')}>
-          <span className="text-xs text-slate-500">{dateLabel}</span>
+          <span className="text-xs text-walnut-400 font-body">{dateLabel}</span>
         </div>
       </div>
     </motion.div>

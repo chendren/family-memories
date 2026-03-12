@@ -22,7 +22,7 @@ export function MemoryDetailPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-20">
-        <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-terracotta-400 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -30,10 +30,10 @@ export function MemoryDetailPage() {
   if (!memory) {
     return (
       <div className="max-w-3xl mx-auto px-4 md:px-6 py-8 text-center">
-        <p className="text-slate-400">Memory not found</p>
+        <p className="text-walnut-500 font-body">Memory not found</p>
         <button
           onClick={() => navigate(-1)}
-          className="mt-4 text-amber-500 hover:text-amber-400 text-sm"
+          className="mt-4 text-terracotta-500 hover:text-terracotta-600 text-sm font-body"
         >
           Go back
         </button>
@@ -54,7 +54,7 @@ export function MemoryDetailPage() {
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-slate-400 hover:text-slate-200 text-sm transition-colors"
+          className="flex items-center gap-2 text-walnut-500 hover:text-walnut-700 text-sm transition-colors font-body"
         >
           <ArrowLeft size={16} />
           Back
@@ -62,13 +62,13 @@ export function MemoryDetailPage() {
         <div className="flex gap-2">
           <button
             onClick={() => setEditing(!editing)}
-            className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-700 transition-colors"
+            className="p-2 rounded-lg bg-white text-walnut-500 hover:text-walnut-700 border border-sand-200 transition-colors"
           >
             <PencilSimple size={16} />
           </button>
           <button
             onClick={handleDelete}
-            className="p-2 rounded-lg bg-slate-800 text-red-400 hover:text-red-300 border border-slate-700 transition-colors"
+            className="p-2 rounded-lg bg-white text-red-400 hover:text-red-500 border border-sand-200 transition-colors"
           >
             <Trash size={16} />
           </button>
@@ -76,8 +76,8 @@ export function MemoryDetailPage() {
       </div>
 
       {editing ? (
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-5">
-          <h2 className="text-lg font-semibold text-slate-100 mb-4">Edit Memory</h2>
+        <div className="bg-white border border-sand-200 rounded-xl p-5 shadow-card">
+          <h2 className="text-lg font-semibold text-walnut-900 mb-4 font-display">Edit Memory</h2>
           <MemoryForm
             mode="edit"
             initialValues={{
@@ -100,7 +100,7 @@ export function MemoryDetailPage() {
 
       {relatedMemories.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-slate-100">Related Memories</h2>
+          <h2 className="text-lg font-semibold text-walnut-900 font-display">Related Memories</h2>
           <MemoryGrid>
             {relatedMemories.map((m) => (
               <MemoryCard key={m.id} memory={m} />

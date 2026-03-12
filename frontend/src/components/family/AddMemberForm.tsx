@@ -52,7 +52,7 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
   }
 
   const inputClass =
-    'w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 [color-scheme:dark]';
+    'w-full bg-cream-100 border border-sand-200 rounded-lg px-3 py-2 text-sm text-walnut-800 placeholder:text-walnut-400 focus:outline-none focus:ring-2 focus:ring-terracotta-300 focus:border-terracotta-300 font-body';
 
   return (
     <AnimatePresence>
@@ -62,7 +62,7 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-walnut-900/30 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -74,14 +74,14 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto pointer-events-auto"
+              className="bg-white border border-sand-200 rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto pointer-events-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between p-5 border-b border-slate-700">
-                <h2 className="text-lg font-semibold text-slate-100">Add Family Member</h2>
+              <div className="flex items-center justify-between p-5 border-b border-sand-200">
+                <h2 className="text-lg font-semibold text-walnut-900 font-display">Add Family Member</h2>
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-700 transition-colors"
+                  className="p-1.5 rounded-lg text-walnut-400 hover:text-walnut-600 hover:bg-cream-200 transition-colors"
                 >
                   <X size={20} />
                 </button>
@@ -89,8 +89,8 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
 
               <form onSubmit={handleSubmit} className="p-5 space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                    Name <span className="text-amber-500">*</span>
+                  <label className="block text-sm font-medium text-walnut-700 mb-1.5 font-body">
+                    Name <span className="text-terracotta-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -104,7 +104,7 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                  <label className="block text-sm font-medium text-walnut-700 mb-1.5 font-body">
                     Nickname
                   </label>
                   <input
@@ -117,7 +117,7 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                  <label className="block text-sm font-medium text-walnut-700 mb-1.5 font-body">
                     Gender
                   </label>
                   <select
@@ -136,7 +136,7 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                    <label className="block text-sm font-medium text-walnut-700 mb-1.5 font-body">
                       Birth Date
                     </label>
                     <input
@@ -147,7 +147,7 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                    <label className="block text-sm font-medium text-walnut-700 mb-1.5 font-body">
                       Death Date
                     </label>
                     <input
@@ -160,7 +160,7 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                  <label className="block text-sm font-medium text-walnut-700 mb-1.5 font-body">
                     Bio
                   </label>
                   <textarea
@@ -176,14 +176,14 @@ export function AddMemberForm({ open, onClose }: AddMemberFormProps) {
                   <button
                     type="button"
                     onClick={onClose}
-                    className="flex-1 px-4 py-2.5 bg-slate-700 text-slate-300 rounded-lg text-sm font-medium hover:bg-slate-600 transition-colors"
+                    className="flex-1 px-4 py-2.5 bg-cream-200 text-walnut-600 rounded-lg text-sm font-medium hover:bg-cream-300 transition-colors font-body"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={!name.trim() || addMember.isPending}
-                    className="flex-1 px-4 py-2.5 bg-amber-500 text-slate-900 rounded-lg text-sm font-semibold hover:bg-amber-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-4 py-2.5 bg-terracotta-500 text-white rounded-lg text-sm font-semibold hover:bg-terracotta-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-body"
                   >
                     {addMember.isPending ? 'Adding...' : 'Add Member'}
                   </button>

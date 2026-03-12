@@ -22,10 +22,10 @@ export function TimelineFilters({ filters, onChange, members, className }: Timel
             key={type}
             onClick={() => onChange({ ...filters, type: type === 'all' ? undefined : type as MemoryType })}
             className={cn(
-              'px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors border',
+              'px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors border font-body',
               (type === 'all' && !filters.type) || filters.type === type
-                ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
-                : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'
+                ? 'bg-terracotta-50 text-terracotta-600 border-terracotta-200'
+                : 'bg-white text-walnut-500 border-sand-200 hover:border-sand-300'
             )}
           >
             {type === 'all' ? 'All' : type.charAt(0).toUpperCase() + type.slice(1)}
@@ -38,7 +38,7 @@ export function TimelineFilters({ filters, onChange, members, className }: Timel
         <select
           value={filters.person_id ?? ''}
           onChange={(e) => onChange({ ...filters, person_id: e.target.value || undefined })}
-          className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+          className="bg-white border border-sand-200 rounded-lg px-3 py-1.5 text-xs text-walnut-600 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body"
         >
           <option value="">All people</option>
           {members.map((m) => (
@@ -53,14 +53,14 @@ export function TimelineFilters({ filters, onChange, members, className }: Timel
           type="date"
           value={filters.date_from ?? ''}
           onChange={(e) => onChange({ ...filters, date_from: e.target.value || undefined })}
-          className="bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+          className="bg-white border border-sand-200 rounded-lg px-2 py-1.5 text-xs text-walnut-600 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body"
         />
-        <span className="text-xs text-slate-500">to</span>
+        <span className="text-xs text-walnut-400 font-body">to</span>
         <input
           type="date"
           value={filters.date_to ?? ''}
           onChange={(e) => onChange({ ...filters, date_to: e.target.value || undefined })}
-          className="bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+          className="bg-white border border-sand-200 rounded-lg px-2 py-1.5 text-xs text-walnut-600 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body"
         />
       </div>
     </div>

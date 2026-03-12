@@ -47,8 +47,8 @@ export function SearchFilters({ filters, onChange, members, className }: SearchF
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          'flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
-          hasFilters ? 'bg-amber-500/10 text-amber-400' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+          'flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium font-body transition-colors',
+          hasFilters ? 'bg-terracotta-50 text-terracotta-600' : 'bg-white text-walnut-500 hover:bg-cream-200 border border-sand-200'
         )}
       >
         <FunnelSimple size={16} />
@@ -67,19 +67,19 @@ export function SearchFilters({ filters, onChange, members, className }: SearchF
       </button>
 
       {open && (
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 space-y-4">
+        <div className="bg-white border border-sand-200 rounded-xl p-4 space-y-4 shadow-card">
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-2">Type</label>
+            <label className="block text-xs font-medium text-walnut-500 mb-2 font-body">Type</label>
             <div className="flex flex-wrap gap-2">
               {MEMORY_TYPES.map((type) => (
                 <button
                   key={type}
                   onClick={() => toggleType(type)}
                   className={cn(
-                    'px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border',
+                    'px-3 py-1.5 rounded-lg text-xs font-medium font-body transition-colors border',
                     (filters.types ?? []).includes(type)
-                      ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
-                      : 'bg-slate-700/50 text-slate-400 border-slate-600 hover:border-slate-500'
+                      ? 'bg-terracotta-50 text-terracotta-600 border-terracotta-200'
+                      : 'bg-cream-100 text-walnut-500 border-sand-200 hover:border-sand-300'
                   )}
                 >
                   {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -90,17 +90,17 @@ export function SearchFilters({ filters, onChange, members, className }: SearchF
 
           {members.length > 0 && (
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-2">People</label>
+              <label className="block text-xs font-medium text-walnut-500 mb-2 font-body">People</label>
               <div className="flex flex-wrap gap-2">
                 {members.map((m) => (
                   <button
                     key={m.id}
                     onClick={() => togglePerson(m.id)}
                     className={cn(
-                      'px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border',
+                      'px-3 py-1.5 rounded-lg text-xs font-medium font-body transition-colors border',
                       (filters.person_ids ?? []).includes(m.id)
-                        ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
-                        : 'bg-slate-700/50 text-slate-400 border-slate-600 hover:border-slate-500'
+                        ? 'bg-terracotta-50 text-terracotta-600 border-terracotta-200'
+                        : 'bg-cream-100 text-walnut-500 border-sand-200 hover:border-sand-300'
                     )}
                   >
                     {m.name}
@@ -111,19 +111,19 @@ export function SearchFilters({ filters, onChange, members, className }: SearchF
           )}
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-2">Date Range</label>
+            <label className="block text-xs font-medium text-walnut-500 mb-2 font-body">Date Range</label>
             <div className="grid grid-cols-2 gap-3">
               <input
                 type="date"
                 value={filters.date_range?.from ?? ''}
                 onChange={(e) => setDateFrom(e.target.value)}
-                className="bg-slate-700 border border-slate-600 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="bg-cream-100 border border-sand-200 rounded-lg px-3 py-1.5 text-xs text-walnut-700 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body"
               />
               <input
                 type="date"
                 value={filters.date_range?.to ?? ''}
                 onChange={(e) => setDateTo(e.target.value)}
-                className="bg-slate-700 border border-slate-600 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="bg-cream-100 border border-sand-200 rounded-lg px-3 py-1.5 text-xs text-walnut-700 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body"
               />
             </div>
           </div>

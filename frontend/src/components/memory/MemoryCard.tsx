@@ -22,11 +22,11 @@ const typeIcons: Record<string, React.ElementType> = {
 };
 
 const typeColors: Record<string, string> = {
-  photo: 'bg-purple-500/20 text-purple-400',
-  audio: 'bg-blue-500/20 text-blue-400',
-  video: 'bg-pink-500/20 text-pink-400',
-  text: 'bg-green-500/20 text-green-400',
-  document: 'bg-orange-500/20 text-orange-400',
+  photo: 'bg-terracotta-50 text-terracotta-500',
+  audio: 'bg-sage-50 text-sage-400',
+  video: 'bg-gold-50 text-gold-400',
+  text: 'bg-cream-300 text-walnut-600',
+  document: 'bg-sand-100 text-walnut-500',
 };
 
 export function MemoryCard({ memory, thumbnailPath, people, className }: MemoryCardProps) {
@@ -38,54 +38,54 @@ export function MemoryCard({ memory, thumbnailPath, people, className }: MemoryC
 
   return (
     <motion.div
-      whileHover={{ y: -2 }}
+      whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(61, 44, 46, 0.12), 0 2px 8px rgba(61, 44, 46, 0.06)' }}
       onClick={() => navigate(`/memories/${memory.id}`)}
       className={cn(
-        'bg-slate-800 rounded-xl border border-slate-700 hover:border-amber-500/50 transition-colors cursor-pointer overflow-hidden shadow-lg shadow-black/20',
+        'bg-white rounded-xl border border-sand-200 hover:border-terracotta-200 transition-colors cursor-pointer overflow-hidden shadow-card',
         className
       )}
     >
       {thumbnailPath ? (
-        <div className="aspect-video w-full overflow-hidden bg-slate-900">
+        <div className="aspect-video w-full overflow-hidden bg-cream-200">
           <img src={thumbnailPath} alt="" className="w-full h-full object-cover" />
         </div>
       ) : (
-        <div className="aspect-video w-full overflow-hidden bg-slate-900/50 flex items-center justify-center">
-          <Icon size={40} className="text-slate-600" />
+        <div className="aspect-video w-full overflow-hidden bg-cream-200/50 flex items-center justify-center">
+          <Icon size={40} className="text-sand-300" />
         </div>
       )}
 
       <div className="p-4 space-y-2">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="text-sm font-semibold text-slate-100 line-clamp-1">{memory.title}</h3>
-          <span className={cn('px-2 py-0.5 rounded-full text-[10px] font-medium flex-shrink-0', typeColors[memory.memory_type])}>
+          <h3 className="text-sm font-semibold text-walnut-800 line-clamp-1 font-display">{memory.title}</h3>
+          <span className={cn('px-2 py-0.5 rounded-full text-[10px] font-medium flex-shrink-0 font-body', typeColors[memory.memory_type])}>
             {memory.memory_type}
           </span>
         </div>
 
         {memory.content && (
-          <p className="text-xs text-slate-400 line-clamp-2">{memory.content}</p>
+          <p className="text-xs text-walnut-500 line-clamp-2 font-body">{memory.content}</p>
         )}
 
         <div className="flex items-center justify-between pt-1">
-          <span className="text-[10px] text-slate-500">{formattedDate}</span>
+          <span className="text-[10px] text-walnut-400 font-body">{formattedDate}</span>
 
           <div className="flex items-center gap-1">
             {people?.slice(0, 3).map((p) => (
               <div
                 key={p.family_member_id}
-                className="w-5 h-5 rounded-full bg-slate-700 border border-slate-600 flex items-center justify-center overflow-hidden"
+                className="w-5 h-5 rounded-full bg-cream-200 border border-sand-200 flex items-center justify-center overflow-hidden"
                 title={p.name}
               >
                 {p.photo_path ? (
                   <img src={p.photo_path} alt="" className="w-full h-full object-cover" />
                 ) : (
-                  <span className="text-[8px] text-slate-400">{p.name.charAt(0)}</span>
+                  <span className="text-[8px] text-walnut-500">{p.name.charAt(0)}</span>
                 )}
               </div>
             ))}
             {(people?.length ?? 0) > 3 && (
-              <span className="text-[10px] text-slate-500">+{(people?.length ?? 0) - 3}</span>
+              <span className="text-[10px] text-walnut-400">+{(people?.length ?? 0) - 3}</span>
             )}
           </div>
         </div>

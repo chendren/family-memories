@@ -79,10 +79,10 @@ export function FamilyTree({ onNodeClick }: FamilyTreeProps) {
 
   if (isLoading) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-slate-950">
+      <div className="w-full h-full flex items-center justify-center bg-cream-50">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
-          <span className="text-sm text-slate-400">Loading family tree...</span>
+          <div className="w-8 h-8 border-2 border-terracotta-400 border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-walnut-500 font-body">Loading family tree...</span>
         </div>
       </div>
     );
@@ -90,7 +90,7 @@ export function FamilyTree({ onNodeClick }: FamilyTreeProps) {
 
   if (graphNodes.length === 0) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-slate-950">
+      <div className="w-full h-full flex items-center justify-center bg-cream-50">
         <EmptyState
           icon={<TreeStructure size={56} weight="duotone" />}
           title="No family members yet"
@@ -121,23 +121,23 @@ export function FamilyTree({ onNodeClick }: FamilyTreeProps) {
         minZoom={0.1}
         maxZoom={2}
         proOptions={{ hideAttribution: true }}
-        className="bg-slate-950"
+        className="bg-cream-50"
       >
         <Background
           variant={BackgroundVariant.Dots}
           gap={24}
           size={1}
-          color="#334155"
+          color="#D4C5B0"
         />
         <Controls
           position="bottom-left"
-          className="!bg-slate-800/80 !backdrop-blur-sm !border-slate-700 !rounded-lg !shadow-xl [&>button]:!bg-slate-800 [&>button]:!border-slate-700 [&>button]:!text-slate-300 [&>button:hover]:!bg-slate-700"
+          className="!bg-white/80 !backdrop-blur-sm !border-sand-200 !rounded-lg !shadow-card [&>button]:!bg-white [&>button]:!border-sand-200 [&>button]:!text-walnut-600 [&>button:hover]:!bg-cream-200"
         />
         <MiniMap
           position="bottom-right"
-          className="!bg-slate-800/50 !border-slate-700 !rounded-lg"
-          nodeColor="#f59e0b"
-          maskColor="rgba(15, 23, 42, 0.7)"
+          className="!bg-white/50 !border-sand-200 !rounded-lg"
+          nodeColor="#E07A5F"
+          maskColor="rgba(253, 248, 243, 0.7)"
           pannable
           zoomable
         />

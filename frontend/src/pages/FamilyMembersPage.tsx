@@ -25,7 +25,7 @@ export function FamilyMembersPage() {
           <div className="flex gap-2">
             <button
               onClick={() => navigate('/family')}
-              className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-medium rounded-lg text-sm transition-colors border border-slate-600"
+              className="flex items-center gap-2 px-4 py-2 bg-cream-200 hover:bg-cream-300 text-walnut-600 font-medium rounded-lg text-sm transition-colors border border-sand-200 font-body"
             >
               <TreeStructure size={16} />
               Tree View
@@ -33,7 +33,7 @@ export function FamilyMembersPage() {
             {members.length >= 2 && (
               <button
                 onClick={() => setShowRelForm(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-medium rounded-lg text-sm transition-colors border border-slate-600"
+                className="flex items-center gap-2 px-4 py-2 bg-cream-200 hover:bg-cream-300 text-walnut-600 font-medium rounded-lg text-sm transition-colors border border-sand-200 font-body"
               >
                 <LinkIcon size={16} />
                 Relationship
@@ -41,7 +41,7 @@ export function FamilyMembersPage() {
             )}
             <button
               onClick={() => setShowAddForm(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-lg text-sm transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold rounded-lg text-sm transition-colors font-body"
             >
               <Plus size={16} weight="bold" />
               Add Member
@@ -53,7 +53,7 @@ export function FamilyMembersPage() {
       {isLoading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-48 bg-slate-800 rounded-xl animate-pulse" />
+            <div key={i} className="h-48 bg-cream-200 rounded-xl animate-pulse" />
           ))}
         </div>
       ) : members.length > 0 ? (
@@ -70,7 +70,7 @@ export function FamilyMembersPage() {
           action={
             <button
               onClick={() => setShowAddForm(true)}
-              className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-lg text-sm transition-colors"
+              className="px-6 py-2.5 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold rounded-lg text-sm transition-colors font-body"
             >
               Add First Member
             </button>

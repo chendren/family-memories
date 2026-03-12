@@ -27,7 +27,7 @@ export function PersonPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-20">
-        <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-terracotta-400 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -35,8 +35,8 @@ export function PersonPage() {
   if (!member) {
     return (
       <div className="max-w-3xl mx-auto px-4 md:px-6 py-8 text-center">
-        <p className="text-slate-400">Person not found</p>
-        <button onClick={() => navigate(-1)} className="mt-4 text-amber-500 hover:text-amber-400 text-sm">
+        <p className="text-walnut-500 font-body">Person not found</p>
+        <button onClick={() => navigate(-1)} className="mt-4 text-terracotta-500 hover:text-terracotta-600 text-sm font-body">
           Go back
         </button>
       </div>
@@ -72,13 +72,13 @@ export function PersonPage() {
   }
 
   const inputClass =
-    'w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500';
+    'w-full bg-cream-100 border border-sand-200 rounded-lg px-3 py-2 text-sm text-walnut-800 focus:outline-none focus:ring-2 focus:ring-terracotta-300 font-body';
 
   return (
     <div className="max-w-4xl mx-auto px-4 md:px-6 py-4 space-y-6">
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-slate-400 hover:text-slate-200 text-sm transition-colors"
+        className="flex items-center gap-2 text-walnut-500 hover:text-walnut-700 text-sm transition-colors font-body"
       >
         <ArrowLeft size={16} />
         Back
@@ -88,14 +88,14 @@ export function PersonPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-slate-800 rounded-xl border border-slate-700 p-6"
+        className="bg-white rounded-xl border border-sand-200 p-6 shadow-card"
       >
         <div className="flex items-start gap-5">
-          <div className="w-24 h-24 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center overflow-hidden flex-shrink-0">
+          <div className="w-24 h-24 rounded-full bg-cream-200 border-2 border-sand-200 flex items-center justify-center overflow-hidden flex-shrink-0">
             {member.photo_path ? (
               <img src={member.photo_path} alt={member.name} className="w-full h-full object-cover" />
             ) : (
-              <span className="text-2xl font-bold text-slate-400">{initials}</span>
+              <span className="text-2xl font-bold text-walnut-400 font-body">{initials}</span>
             )}
           </div>
 
@@ -138,14 +138,14 @@ export function PersonPage() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setEditing(false)}
-                    className="px-4 py-2 bg-slate-700 text-slate-300 rounded-lg text-sm"
+                    className="px-4 py-2 bg-cream-200 text-walnut-600 rounded-lg text-sm font-body"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={saveEdit}
                     disabled={updateMember.isPending}
-                    className="px-4 py-2 bg-amber-500 text-slate-900 font-semibold rounded-lg text-sm"
+                    className="px-4 py-2 bg-terracotta-500 text-white font-semibold rounded-lg text-sm font-body"
                   >
                     Save
                   </button>
@@ -154,18 +154,18 @@ export function PersonPage() {
             ) : (
               <>
                 <div className="flex items-center gap-3">
-                  <h1 className="text-2xl font-bold text-slate-100">{member.name}</h1>
+                  <h1 className="text-2xl font-bold text-walnut-900 font-display">{member.name}</h1>
                   <button
                     onClick={startEdit}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-700 transition-colors"
+                    className="p-1.5 rounded-lg text-walnut-400 hover:text-walnut-600 hover:bg-cream-200 transition-colors"
                   >
                     <PencilSimple size={16} />
                   </button>
                 </div>
                 {member.nickname && (
-                  <p className="text-slate-400 mt-0.5">"{member.nickname}"</p>
+                  <p className="text-walnut-500 mt-0.5 font-body italic">"{member.nickname}"</p>
                 )}
-                <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
+                <div className="flex items-center gap-4 mt-2 text-sm text-walnut-400 font-body">
                   {birthYear && (
                     <span className="flex items-center gap-1">
                       <Calendar size={14} />
@@ -174,7 +174,7 @@ export function PersonPage() {
                   )}
                 </div>
                 {member.bio && (
-                  <p className="text-sm text-slate-300 mt-3 leading-relaxed">{member.bio}</p>
+                  <p className="text-sm text-walnut-600 mt-3 leading-relaxed font-body">{member.bio}</p>
                 )}
               </>
             )}
@@ -184,7 +184,7 @@ export function PersonPage() {
 
       {/* Their Memories */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold text-slate-100">
+        <h2 className="text-lg font-semibold text-walnut-900 font-display">
           Memories ({memories.length})
         </h2>
         {memories.length > 0 ? (

@@ -70,19 +70,19 @@ export function AudioCapture({ onCapture, className }: AudioCaptureProps) {
         className={cn(
           'w-20 h-20 rounded-xl flex flex-col items-center justify-center gap-1 transition-all',
           recording
-            ? 'bg-red-500/20 border-2 border-red-500 text-red-400 animate-pulse'
-            : 'border-2 border-dashed border-slate-600 hover:border-amber-500/50 text-slate-400 hover:text-amber-500'
+            ? 'bg-red-50 border-2 border-red-400 text-red-500 animate-pulse'
+            : 'border-2 border-dashed border-sand-300 hover:border-terracotta-300 text-walnut-400 hover:text-terracotta-500'
         )}
       >
         {recording ? (
           <>
             <Stop size={24} weight="fill" />
-            <span className="text-[10px] font-mono">{formatDuration(duration)}</span>
+            <span className="text-[10px] font-mono font-body">{formatDuration(duration)}</span>
           </>
         ) : (
           <>
             <Microphone size={24} />
-            <span className="text-[10px] font-medium">Audio</span>
+            <span className="text-[10px] font-medium font-body">Audio</span>
           </>
         )}
       </button>

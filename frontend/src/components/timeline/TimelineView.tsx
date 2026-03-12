@@ -46,7 +46,7 @@ export function TimelineView({ memories, hasNextPage, fetchNextPage, isFetchingN
   return (
     <div className={cn('relative', className)}>
       {/* Center spine line (desktop) */}
-      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-slate-700" />
+      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-sand-200" />
 
       <div className="space-y-2">
         {memories.map((memory, i) => (
@@ -58,7 +58,7 @@ export function TimelineView({ memories, hasNextPage, fetchNextPage, isFetchingN
 
       {isFetchingNextPage && (
         <div className="flex justify-center py-4">
-          <div className="w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-terracotta-400 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
     </div>

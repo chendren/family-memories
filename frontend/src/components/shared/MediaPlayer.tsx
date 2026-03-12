@@ -61,7 +61,7 @@ export function MediaPlayer({ src, type, className }: MediaPlayerProps) {
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={cn('rounded-xl bg-slate-800 border border-slate-700 overflow-hidden', className)}>
+    <div className={cn('rounded-xl bg-white border border-sand-200 overflow-hidden', className)}>
       {type === 'video' && (
         <video ref={ref as React.RefObject<HTMLVideoElement>} src={src} className="w-full" />
       )}
@@ -70,21 +70,21 @@ export function MediaPlayer({ src, type, className }: MediaPlayerProps) {
       <div className="flex items-center gap-3 px-4 py-3">
         <button
           onClick={togglePlay}
-          className="w-8 h-8 rounded-full bg-amber-500 text-slate-900 flex items-center justify-center hover:bg-amber-600 transition-colors flex-shrink-0"
+          className="w-8 h-8 rounded-full bg-terracotta-500 text-white flex items-center justify-center hover:bg-terracotta-600 transition-colors flex-shrink-0"
         >
           {playing ? <Pause size={14} weight="fill" /> : <Play size={14} weight="fill" />}
         </button>
 
         <div className="flex-1 cursor-pointer" onClick={seek}>
-          <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+          <div className="h-1.5 bg-cream-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-amber-500 rounded-full transition-all"
+              className="h-full bg-terracotta-400 rounded-full transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
-        <span className="text-xs text-slate-400 font-mono tabular-nums flex-shrink-0">
+        <span className="text-xs text-walnut-400 font-mono tabular-nums flex-shrink-0">
           {formatTime(currentTime)} / {formatTime(duration)}
         </span>
       </div>

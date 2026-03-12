@@ -38,10 +38,10 @@ export function PhotoCapture({ onCapture, className }: PhotoCaptureProps) {
       ) : (
         <button
           onClick={() => inputRef.current?.click()}
-          className="w-20 h-20 rounded-xl border-2 border-dashed border-slate-600 hover:border-amber-500/50 text-slate-400 hover:text-amber-500 flex flex-col items-center justify-center gap-1 transition-colors"
+          className="w-20 h-20 rounded-xl border-2 border-dashed border-sand-300 hover:border-terracotta-300 text-walnut-400 hover:text-terracotta-500 flex flex-col items-center justify-center gap-1 transition-colors"
         >
           <Camera size={24} />
-          <span className="text-[10px] font-medium">Photo</span>
+          <span className="text-[10px] font-medium font-body">Photo</span>
         </button>
       )}
       <input

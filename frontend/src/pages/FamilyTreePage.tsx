@@ -55,14 +55,14 @@ export function FamilyTreePage() {
       <div className="absolute top-4 right-4 z-20 flex gap-2">
         <button
           onClick={() => setShowAddRelationship(true)}
-          className="flex items-center gap-2 px-3 py-2 bg-slate-800/90 backdrop-blur-sm border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-400 font-medium rounded-lg text-sm transition-all shadow-lg"
+          className="flex items-center gap-2 px-3 py-2 bg-white/90 backdrop-blur-sm border border-sand-200 hover:border-terracotta-200 text-walnut-600 hover:text-terracotta-500 font-medium rounded-lg text-sm transition-all shadow-card font-body"
         >
           <LinkIcon size={16} />
           <span className="hidden sm:inline">Relationship</span>
         </button>
         <button
           onClick={() => setShowAddMember(true)}
-          className="flex items-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-lg text-sm transition-colors shadow-lg shadow-amber-500/20"
+          className="flex items-center gap-2 px-3 py-2 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold rounded-lg text-sm transition-colors shadow-warm font-body"
         >
           <Plus size={16} weight="bold" />
           <span className="hidden sm:inline">Add Member</span>
@@ -82,20 +82,20 @@ export function FamilyTreePage() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="absolute top-0 right-0 h-full w-80 bg-slate-800/95 backdrop-blur-md border-l border-slate-700 z-30 overflow-y-auto shadow-2xl"
+            className="absolute top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-md border-l border-sand-200 z-30 overflow-y-auto shadow-xl"
           >
             <div className="p-5">
               {/* Close button */}
               <button
                 onClick={closeSidebar}
-                className="absolute top-3 right-3 p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-700 transition-colors"
+                className="absolute top-3 right-3 p-1.5 rounded-lg text-walnut-400 hover:text-walnut-600 hover:bg-cream-200 transition-colors"
               >
                 <X size={18} />
               </button>
 
               {/* Avatar + Name */}
               <div className="flex flex-col items-center text-center pt-2 pb-4">
-                <div className="w-20 h-20 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center overflow-hidden mb-3">
+                <div className="w-20 h-20 rounded-full bg-cream-200 border-2 border-sand-200 flex items-center justify-center overflow-hidden mb-3">
                   {member.photo_path ? (
                     <img
                       src={`/${member.photo_path}`}
@@ -103,17 +103,17 @@ export function FamilyTreePage() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <UserCircle size={48} className="text-slate-500" weight="duotone" />
+                    <UserCircle size={48} className="text-sand-300" weight="duotone" />
                   )}
                 </div>
-                <h3 className="text-lg font-semibold text-slate-100">{member.name}</h3>
+                <h3 className="text-lg font-semibold text-walnut-900 font-display">{member.name}</h3>
                 {member.nickname && (
-                  <p className="text-sm text-slate-400 italic">
+                  <p className="text-sm text-walnut-500 italic font-body">
                     &ldquo;{member.nickname}&rdquo;
                   </p>
                 )}
                 {birthYear && (
-                  <p className="flex items-center gap-1 text-xs text-slate-500 mt-1">
+                  <p className="flex items-center gap-1 text-xs text-walnut-400 mt-1 font-body">
                     <Calendar size={12} />
                     {birthYear}{deathYear ? ` – ${deathYear}` : ' – present'}
                   </p>
@@ -123,13 +123,13 @@ export function FamilyTreePage() {
               {/* Bio */}
               {member.bio && (
                 <div className="mb-4">
-                  <p className="text-sm text-slate-300 leading-relaxed">{member.bio}</p>
+                  <p className="text-sm text-walnut-600 leading-relaxed font-body">{member.bio}</p>
                 </div>
               )}
 
               {/* Recent memories */}
               <div className="mb-4">
-                <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                <h4 className="text-xs font-semibold text-walnut-400 uppercase tracking-wider mb-2 font-body">
                   Recent Memories
                 </h4>
                 {memories.length > 0 ? (
@@ -138,12 +138,12 @@ export function FamilyTreePage() {
                       <button
                         key={memory.id}
                         onClick={() => navigate(`/memories/${memory.id}`)}
-                        className="w-full text-left p-3 rounded-lg bg-slate-700/50 border border-slate-700 hover:border-amber-500/30 transition-colors"
+                        className="w-full text-left p-3 rounded-lg bg-cream-100 border border-sand-200 hover:border-terracotta-200 transition-colors"
                       >
-                        <p className="text-sm font-medium text-slate-200 truncate">
+                        <p className="text-sm font-medium text-walnut-700 truncate font-body">
                           {memory.title}
                         </p>
-                        <p className="text-xs text-slate-500 mt-0.5">
+                        <p className="text-xs text-walnut-400 mt-0.5 font-body">
                           {memory.memory_type}
                           {memory.memory_date ? ` · ${memory.memory_date}` : ''}
                         </p>
@@ -151,7 +151,7 @@ export function FamilyTreePage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-xs text-slate-500">No memories tagged with this person yet.</p>
+                  <p className="text-xs text-walnut-400 font-body">No memories tagged with this person yet.</p>
                 )}
               </div>
 
@@ -159,7 +159,7 @@ export function FamilyTreePage() {
               <div className="space-y-2">
                 <button
                   onClick={() => navigate(`/person/${selectedId}`)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-amber-500 text-slate-900 font-semibold rounded-lg text-sm hover:bg-amber-400 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-terracotta-500 text-white font-semibold rounded-lg text-sm hover:bg-terracotta-600 transition-colors font-body"
                 >
                   View Profile
                   <ArrowRight size={14} weight="bold" />
@@ -168,7 +168,7 @@ export function FamilyTreePage() {
                   onClick={() => {
                     setShowAddRelationship(true);
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-700 text-slate-300 font-medium rounded-lg text-sm hover:bg-slate-600 transition-colors border border-slate-600"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-cream-200 text-walnut-600 font-medium rounded-lg text-sm hover:bg-cream-300 transition-colors border border-sand-200 font-body"
                 >
                   <LinkIcon size={14} />
                   Add Relationship

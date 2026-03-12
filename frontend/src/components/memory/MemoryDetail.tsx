@@ -23,7 +23,7 @@ export function MemoryDetail({ memory, className }: MemoryDetailProps) {
   return (
     <div className={cn('space-y-6', className)}>
       {firstAsset && (
-        <div className="rounded-xl overflow-hidden bg-slate-800 border border-slate-700">
+        <div className="rounded-xl overflow-hidden bg-white border border-sand-200 shadow-card">
           {isImage && (
             <img
               src={`/media/originals/${firstAsset.file_path}`}
@@ -39,11 +39,11 @@ export function MemoryDetail({ memory, className }: MemoryDetailProps) {
 
       <div className="space-y-4">
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-2xl font-bold text-slate-100">{memory.title}</h1>
+          <h1 className="text-2xl font-bold text-walnut-900 font-display">{memory.title}</h1>
           <ProcessingBadge status={memory.processing_status} />
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+        <div className="flex flex-wrap items-center gap-4 text-sm text-walnut-500 font-body">
           {memory.memory_date && (
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
@@ -59,16 +59,16 @@ export function MemoryDetail({ memory, className }: MemoryDetailProps) {
         </div>
 
         {memory.content && (
-          <p className="text-slate-300 leading-relaxed whitespace-pre-wrap">{memory.content}</p>
+          <p className="text-walnut-700 leading-relaxed whitespace-pre-wrap font-body">{memory.content}</p>
         )}
 
         {memory.summary && (
-          <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4 space-y-2">
-            <div className="flex items-center gap-2 text-amber-400 text-sm font-medium">
+          <div className="bg-terracotta-50 border border-terracotta-200 rounded-xl p-4 space-y-2">
+            <div className="flex items-center gap-2 text-terracotta-600 text-sm font-medium font-body">
               <Sparkle size={16} weight="fill" />
               AI Summary
             </div>
-            <p className="text-sm text-slate-300 leading-relaxed">{memory.summary}</p>
+            <p className="text-sm text-walnut-600 leading-relaxed font-body">{memory.summary}</p>
           </div>
         )}
 
@@ -77,7 +77,7 @@ export function MemoryDetail({ memory, className }: MemoryDetailProps) {
             {memory.tags.map((tag) => (
               <span
                 key={tag.id}
-                className="px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300 border border-slate-600"
+                className="px-3 py-1 rounded-full text-xs font-medium bg-cream-200 text-walnut-600 border border-sand-200 font-body"
               >
                 {tag.name}
               </span>
@@ -87,22 +87,22 @@ export function MemoryDetail({ memory, className }: MemoryDetailProps) {
 
         {memory.people.length > 0 && (
           <div className="space-y-2">
-            <h3 className="text-sm font-medium text-slate-400">People</h3>
+            <h3 className="text-sm font-medium text-walnut-500 font-body">People</h3>
             <div className="flex flex-wrap gap-2">
               {memory.people.map((person) => (
                 <a
                   key={person.family_member_id}
                   href={`/person/${person.family_member_id}`}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700 hover:border-amber-500/50 transition-colors"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-sand-200 hover:border-terracotta-200 transition-colors"
                 >
-                  <div className="w-5 h-5 rounded-full bg-slate-600 overflow-hidden flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full bg-cream-200 overflow-hidden flex items-center justify-center">
                     {person.photo_path ? (
                       <img src={person.photo_path} alt="" className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-[8px] text-slate-300">{person.name.charAt(0)}</span>
+                      <span className="text-[8px] text-walnut-500">{person.name.charAt(0)}</span>
                     )}
                   </div>
-                  <span className="text-xs font-medium text-slate-300">{person.name}</span>
+                  <span className="text-xs font-medium text-walnut-600 font-body">{person.name}</span>
                 </a>
               ))}
             </div>
