@@ -8,6 +8,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@dagrejs/dagre": "^1.1.8",
     "@family-memories/shared": "*",
     "@lancedb/lancedb": "^0.26.2",
     "better-sqlite3": "^12.6.2",
@@ -15,8 +16,8 @@
     "express": "^4.21.0",
     "express-rate-limit": "^8.3.0",
     "graphology": "^0.26.0",
-    "graphology-traversal": "^0.3.1",
     "graphology-shortest-path": "^2.1.0",
+    "graphology-traversal": "^0.3.1",
     "helmet": "^8.1.0",
     "ioredis": "^5.6.0",
     "multer": "^2.0.1",
