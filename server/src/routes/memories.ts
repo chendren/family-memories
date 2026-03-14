@@ -118,6 +118,25 @@ router.post('/', (req, res) => {
   }
 });
 
+// Tags — list all tags with memory counts
+router.get('/tags', (req, res) => {
+  try {
+    const db = getDb();
+    const tags = db.prepare(`
+      SELECT t.id, t.name, t.category, COUNT(mt.memory_id) as count
+      FROM tags t
+      LEFT JOIN memory_tags mt ON mt.tag_id = t.id
+      GROUP BY t.id
+      ORDER BY count DESC, t.name ASC
+    `).all() as Array<Tag & { count: number }>;
+
+    res.json({ data: tags });
+  } catch (err) {
+    logger.error({ err }, 'Failed to list tags');
+    res.status(500).json({ code: 'TAGS_ERROR', message: 'Failed to list tags' });
+  }
+});
+
 // "On This Day" — memories from the same month-day in previous years
 router.get('/on-this-day', (req, res) => {
   try {

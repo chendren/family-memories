@@ -2,8 +2,8 @@ import type { SearchRequest, SearchResponse, SearchSuggestion, ApiResponse } fro
 import api from './api';
 
 export async function search(request: SearchRequest): Promise<SearchResponse> {
-  const { data } = await api.post<SearchResponse>('/api/search', request);
-  return data;
+  const { data } = await api.post<{ data: SearchResponse }>('/api/search', request);
+  return data.data;
 }
 
 export async function getSuggestions(q: string): Promise<ApiResponse<SearchSuggestion[]>> {

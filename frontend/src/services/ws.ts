@@ -87,7 +87,7 @@ class WebSocketClient {
 }
 
 const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-const wsUrl = import.meta.env.DEV ? 'ws://localhost:3142' : `${wsProtocol}//${window.location.host}`;
+const wsUrl = import.meta.env.DEV ? 'ws://localhost:3142/ws' : `${wsProtocol}//${window.location.host}/ws`;
 
 export const wsClient = new WebSocketClient(wsUrl);
 export default wsClient;
