@@ -10,7 +10,7 @@
   "dependencies": {
     "@dagrejs/dagre": "^1.1.8",
     "@family-memories/shared": "*",
-    "@lancedb/lancedb": "^0.26.2",
+    "@lancedb/lancedb": "^0.30.0",
 
     "better-sqlite3": "^12.6.2",
     "cors": "^2.8.5",
