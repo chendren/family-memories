@@ -20,7 +20,7 @@
     "graphology-shortest-path": "^2.1.0",
     "graphology-traversal": "^0.3.1",
     "helmet": "^8.1.0",
-    "ioredis": "^5.6.0",
+    "ioredis": "^5.11.1",
     "multer": "^2.0.1",
     "nanoid": "^5.1.5",
     "pino": "^10.3.1",
