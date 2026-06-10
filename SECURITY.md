@@ -16,4 +16,4 @@ If you discover a security issue, please report it responsibly:
 
 ## Supported Versions
 
-Security fixes are applied to the default branch (`main` or `master`).
+Security fixes are applied to the default branch (`main`).
