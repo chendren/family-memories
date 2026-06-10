@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@family-memories/shared": "*",
-    "@dagrejs/dagre": "^1.1.4",
+    "@dagrejs/dagre": "^3.0.0",
     "@phosphor-icons/react": "^2.1.8",
     "@tanstack/react-query": "^5.101.0",
     "@xyflow/react": "^12.10.1",
